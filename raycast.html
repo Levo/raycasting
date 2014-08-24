@@ -171,22 +171,35 @@
                     drawEnd = height - 1;
                 }
 
-                var color = null;
+                var c = null;
                 switch(worldMap[map.x][map.y]){
-                    case 1: color = 'rgb(255,0,0)';
+                    case 1: c = {r: 255, g: 0, b: 0};
                                     break;
-                    case 2: color = 'rgb(0,255,0)';
+                    case 2: c = {r: 0, g: 255, b: 0};
                                     break;
-                    case 3: color = 'rgb(0,0,255)';
+                    case 3: c = {r: 0, g: 0, b: 255};
                                     break;
-                    case 4: color = 'rgb(255,255,255)';
+                    case 4: c = {r: 255, g: 255, b: 255};
                                     break;
-                    default: color = 'rgb(255,255,0)';
+                    default: c = {r: 255, g: 255, b: 0};
                                     break;
                 }
 
+                color = 'rgb(' + c.r + ',' + c.g + ',' + c.b + ')';
+
                 if (side == 1){
-                    color = 'gray';
+                  if(c.r == 255 && c.g == 0 && c.b == 0){
+                    color = 'rgb(' + 127 + ',' + 0 + ',' + 0 + ')';
+                  }else if(c.r == 0 && c.g == 255 && c.b == 0){
+                    color = 'rgb(' + 0 + ',' + 127 + ',' + 0 + ')';
+                  }else if(c.r == 0 && c.g == 0 && c.b == 255){
+                    color = 'rgb(' + 0 + ',' + 0 + ',' + 127 + ')';
+                  }else if(c.r == 255 && c.g == 255 && c.b == 255){
+                    color = 'rgb(' + 127 + ',' + 127 + ',' + 127 + ')';
+                  }else{
+                    color = 'rgb(' + 127 + ',' + 127 + ',' + 0 + ')';
+                  }
+
                 }
 
                 drawVertLines(x,drawStart,drawEnd,color);
